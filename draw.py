@@ -61,7 +61,18 @@ def add_sphere( points, cx, cy, cz, r, step ):
   # Returns a matrix of those points
   # ====================
 def generate_torus( points, cx, cy, cz, r0, r1, step ):
-    pass
+    matrix = []
+    p = 0;
+    while p < steps:
+        t = 0;
+        while t < steps / 2:
+            phi = p * 2 * math.pi/steps
+            theta = t * 2 * math.pi/steps
+            x = r0 * math.cos(theta) * math.cos(phi) + r1 * math.cos(phi) + cx
+            y = r0 * math.sin(theta) + cy
+            z = -r0 * math.cos(theta) * math.sin(phi) - r1 * math.sin(phi)+ cz
+            add_point(matrix, x, y, z)
+    return matrix
 
   # ====================
   # adds all the points for a torus with center

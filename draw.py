@@ -7,18 +7,18 @@ from matrix import *
   # height and depth dimensions.
   # ====================
 def add_box( points, x, y, z, width, height, depth ):
-    add_edge(x, y, z, x + width, y, z)
-    add_edge(x + width, y, z, x + width, y - height, z)
-    add_edge(x + width, y - height, z, x, y-height, z)
-    add_edge(x, y-height, z, x, y, z)
-    add_edge(x, y, z - depth, x + width, y, z - depth)
-    add_edge(x + width, y, z - depth, x + width, y - height, z - depth)
-    add_edge(x + width, y - height, z - depth, x, y-height, z - depth)
-    add_edge(x, y-height, z - depth, x, y, z - depth)
-    add_edge(x, y, z, x, y, z - depth)
-    add_edge(x + width, y, z, x + width, y, z - depth)
-    add_edge(x + width, y - height, z, x + width, y - height, z - depth)
-    add_edge(x, y-height, z, x, y - height, z - depth)
+    add_edge(points, x, y, z, x + width, y, z)
+    add_edge(points, x + width, y, z, x + width, y - height, z)
+    add_edge(points, x + width, y - height, z, x, y-height, z)
+    add_edge(points, x, y-height, z, x, y, z)
+    add_edge(points, x, y, z - depth, x + width, y, z - depth)
+    add_edge(points, x + width, y, z - depth, x + width, y - height, z - depth)
+    add_edge(points, x + width, y - height, z - depth, x, y-height, z - depth)
+    add_edge(points, x, y-height, z - depth, x, y, z - depth)
+    add_edge(points, x, y, z, x, y, z - depth)
+    add_edge(points, x + width, y, z, x + width, y, z - depth)
+    add_edge(points, x + width, y - height, z, x + width, y - height, z - depth)
+    add_edge(points, x, y-height, z, x, y - height, z - depth)
 
   # ====================
   # Generates all the points along the surface
@@ -38,6 +38,8 @@ def generate_sphere( points, cx, cy, cz, r, steps ):
             y = r*math.sin(theta)*math.cos(phi) + cy
             z = r*math.sin(theta)*math.sin(phi) + cz
             add_point(matrix, x, y, z)
+            t+=1
+        p+=1
     return matrix
         
     
@@ -65,13 +67,15 @@ def generate_torus( points, cx, cy, cz, r0, r1, steps ):
     p = 0;
     while p < steps:
         t = 0;
-        while t < steps / 2:
+        while t < steps:
             phi = p * 2 * math.pi/steps
             theta = t * 2 * math.pi/steps
             x = r0 * math.cos(theta) * math.cos(phi) + r1 * math.cos(phi) + cx
             y = r0 * math.sin(theta) + cy
             z = -r0 * math.cos(theta) * math.sin(phi) - r1 * math.sin(phi)+ cz
             add_point(matrix, x, y, z)
+            t+=1
+        p+=1
     return matrix
 
   # ====================

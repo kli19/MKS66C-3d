@@ -76,6 +76,10 @@ def parse_file( fname, edges, transform, screen, color ):
                        float(args[0]), float(args[1]), float(args[2]),
                        float(args[3]), 20)
 
+        elif line == 'torus':
+            add_torus(edges, float(args[0]), float(args[1]),
+                      float(args[2]), float(args[3]), float(args[4]), 20)
+
         elif line == 'hermite' or line == 'bezier':
             #print 'curve\t' + line + ": " + str(args)
             add_curve(edges,

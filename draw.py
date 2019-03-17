@@ -49,7 +49,9 @@ def generate_sphere( points, cx, cy, cz, r, steps ):
   # necessary points
   # ====================
 def add_sphere( points, cx, cy, cz, r, step ):
-    pass
+    sphere = generate_sphere(points, cx, cy, cz, r, step );
+    for point in sphere:
+        add_edge(points, point[0], point[1], point[2], point[0] + 1, point[1] + 1, point[2] + 1)
 
 
   # ====================
